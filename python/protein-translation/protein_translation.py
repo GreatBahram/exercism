@@ -1,5 +1,5 @@
-from itertools import islice
-
+import re
+from itertools import takewhile
 
 DNA_TABLE = {
     'AUG': 'Methionine',
@@ -16,19 +16,13 @@ DNA_TABLE = {
     'UGU': 'Cysteine',
     'UGC': 'Cysteine',
     'UGG': 'Tryptophan',
+    'UAA': 'Stop',
+    'UAG': 'Stop',
+    'UGA': 'Stop',
 }
 
 
-def codons(words):
-    stops = ('UAA', 'UAG', 'UGA')
-    length = len(words) // 3
-    iterator = iter(words)
-    for _ in range(length):
-        codon = ''.join(islice(iterator, 3))
-        if codon in stops:
-            break
-        yield codon
-
-
 def proteins(strand):
-    return [DNA_TABLE[codon] for codon in codons(strand)]
+    CODON_RE = re.compile(r'\w{3}')
+    polypeptides = [DNA_TABLE[codon] for codon in CODON_RE.findall(strand)]
+    return list(takewhile(lambda p: p != 'Stop', polypeptides))
