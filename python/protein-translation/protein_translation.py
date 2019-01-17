@@ -23,6 +23,6 @@ DNA_TABLE = {
 
 
 def proteins(strand):
-    CODON_RE = re.compile(r'\w{3}')
-    polypeptides = [DNA_TABLE[codon] for codon in CODON_RE.findall(strand)]
+    codons = re.findall(r'\w{3}', strand)
+    polypeptides = [DNA_TABLE[codon] for codon in codons]
     return list(takewhile(lambda p: p != 'Stop', polypeptides))
