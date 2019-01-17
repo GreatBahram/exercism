@@ -1,5 +1,3 @@
 def to_rna(dna_strand):
-    DNA = "ACGT"
-    RNA = "UGCA"
-    rna_dict = str.maketrans(DNA, RNA)
-    return dna_strand.translate(rna_dict)
+    DNA_RNA_TABLE = str.maketrans("ACGT" , "UGCA")
+    return dna_strand.translate(DNA_RNA_TABLE)
