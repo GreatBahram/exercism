@@ -21,7 +21,7 @@ def first_sixth(number, counter):
 
 def full_house(counter):
     if len(counter) == 2 and counter.most_common()[0][1] == 3:
-        return sum([key * value for key, value in counter.items()])
+        return sum(key * value for key, value in counter.items())
     return 0
 
 
@@ -41,7 +41,7 @@ def big_straight(counter):
 
 
 def choice(counter):
-    return sum([key * value for key, value in counter.items()])
+    return sum(key * value for key, value in counter.items())
 
 
 def yacht(counter):
