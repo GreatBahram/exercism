@@ -15,13 +15,11 @@ ISBN_RE = re.compile(r"""
 def verify(isbn):
     if not is_valid_isbn(isbn):
         return False
-
     numbers = [
         10 if char == 'X' else int(char)
         for char in isbn
         if char != '-'
     ]
-
     return sum(
         index * int(number)
         for index, number in enumerate(numbers[::-1], 1) 
