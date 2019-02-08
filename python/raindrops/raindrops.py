@@ -10,8 +10,9 @@ DROPS_LIST = [
 
 
 def raindrops(number: int) -> str:
-    output = ''
-    for pair in DROPS_LIST:
-        if number % pair.factor == 0:
-            output += pair.string
-    return output if output else str(number)
+    response = ''.join(
+        pair.string
+        for pair in DROPS_LIST
+        if number % pair.factor == 0
+    )
+    return response or str(number)
