@@ -18,8 +18,8 @@ class Garden:
         self.rows = diagram.splitlines()
     
     def plants(self, name):
-        index = self.students.index(name) * 2
-        start, end = index , index + 2
+        start = self.students.index(name) * 2
+        end = start + 2
         return [
             FLOWERS_MAP[seed]
             for row in self.rows
