@@ -1,4 +1,8 @@
-DEFAULT_STUDENTS = 'Alice Bob Charlie David Eve Fred Ginny Harriet Ileana Joseph Kincaid Larry'
+DEFAULT_STUDENTS = [
+    'Alice', 'Bob', 'Charlie', 'David', 'Eve',
+    'Fred', 'Ginny', 'Harriet', 'Ileana', 
+    'Joseph', 'Kincaid', 'Larry',
+]
 
 FLOWERS_MAP = {
     'R': 'Radishes',
@@ -9,7 +13,7 @@ FLOWERS_MAP = {
 
 
 class Garden:
-    def __init__(self, diagram, students=DEFAULT_STUDENTS.split()):
+    def __init__(self, diagram, students=DEFAULT_STUDENTS):
         self.students = sorted(students)
         self.rows = diagram.splitlines()
     
