@@ -1,18 +1,14 @@
-from collections import namedtuple
-
-Pair = namedtuple('Pair', ['factor', 'string'])
-
-DROPS_LIST = [
-    Pair(3, 'Pling'),
-    Pair(5, 'Plang'),
-    Pair(7, 'Plong'),
-]
+DROPS_DICT = {
+    3: 'Pling',
+    5: 'Plang',
+    7: 'Plong',
+}
 
 
 def raindrops(number: int) -> str:
     response = ''.join(
-        pair.string
-        for pair in DROPS_LIST
-        if number % pair.factor == 0
+        string
+        for factor, string in DROPS_DICT.items()
+        if number % factor == 0
     )
     return response or str(number)
