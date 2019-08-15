@@ -1,13 +1,14 @@
-HOUR_PER_DAY = 24
 MINUTES_PER_HOUR = 60
+MINUTES_PER_DAY = 1440
 
 
 class Clock:
     def __init__(self, hour, minute):
-        self.hour = hour
-        self.minute = minute
+        self.hour, self.minute = divmod(
+            (hour * MINUTES_PER_HOUR + minute) % MINUTES_PER_DAY, 60
+        )
 
-    def __repr__(self):
+    def __str__(self):
         return f"{self.hour:02}:{self.minute:02}"
 
     def __eq__(self, other):
@@ -20,22 +21,3 @@ class Clock:
 
     def __sub__(self, minutes):
         return Clock(self.hour, self.minute - minutes)
-
-    @property
-    def hour(self):
-        return self._hour
-
-    @hour.setter
-    def hour(self, value):
-        _, value = divmod(value, HOUR_PER_DAY)
-        self._hour = value
-
-    @property
-    def minute(self):
-        return self._minute
-
-    @minute.setter
-    def minute(self, value):
-        quotient, value = divmod(value, MINUTES_PER_HOUR)
-        self.hour += quotient
-        self._minute = value
